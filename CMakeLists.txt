@@ -58,8 +58,16 @@ ament_target_dependencies(tutorial_1
 	${dependencies}
 )
 
+add_executable(tutorial_2
+  src/tutorial_1.cpp
+)
+ament_target_dependencies(tutorial_2
+	${dependencies}
+)
+
 install (TARGETS
   tutorial_1
+  tutorial_2
   DESTINATION lib/${PROJECT_NAME}
 )
 

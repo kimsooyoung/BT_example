@@ -32,3 +32,10 @@ ApproachObject: approach_object
 GripperInterface::close
 ```
 
+```
+$ ros2 run bt_example tutorial_2
+[ Battery: OK ]
+GripperInterface::open
+ApproachObject: approach_object
+GripperInterface::close
+```
