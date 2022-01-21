@@ -59,15 +59,39 @@ ament_target_dependencies(tutorial_1
 )
 
 add_executable(tutorial_2
-  src/tutorial_1.cpp
+  src/tutorial_2.cpp
 )
 ament_target_dependencies(tutorial_2
+	${dependencies}
+)
+
+add_executable(tutorial_3
+  src/tutorial_3.cpp
+)
+ament_target_dependencies(tutorial_3
+	${dependencies}
+)
+
+add_executable(tutorial_4
+  src/tutorial_4.cpp
+)
+ament_target_dependencies(tutorial_4
+	${dependencies}
+)
+
+add_executable(tutorial_4_reactive_sequence
+  src/tutorial_4_reactive_sequence.cpp
+)
+ament_target_dependencies(tutorial_4_reactive_sequence
 	${dependencies}
 )
 
 install (TARGETS
   tutorial_1
   tutorial_2
+  tutorial_3
+  tutorial_4
+  tutorial_4_reactive_sequence
   DESTINATION lib/${PROJECT_NAME}
 )
 

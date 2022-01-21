@@ -2,6 +2,8 @@
 
 #include <behaviortree_cpp_v3/action_node.h>
 
+using namespace BT;
+
 // SyncActionNode (synchronous action) with an input port.
 class SaySomething : public SyncActionNode
 {

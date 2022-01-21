@@ -34,8 +34,50 @@ GripperInterface::close
 
 ```
 $ ros2 run bt_example tutorial_2
+Robot says: start thinking...
+Robot says: The answer is 42
+Robot says: SaySomething2 works too...
+Robot says: The answer is 42
+```
+
+```
+$ ros2 run bt_example tutorial_3
+Target positions: [ 1.1, 2.3 ]
+Converting string: "-1;3"
+Target positions: [ -1.0, 3.0 ]
+```
+
+```
+$ ros2 run bt_example tutorial_4
+--- 1st executeTick() ---
 [ Battery: OK ]
-GripperInterface::open
-ApproachObject: approach_object
-GripperInterface::close
+Robot says: mission started...
+Converting string: "1;2;3"
+[ MoveBase: STARTED ]. goal: x=1 y=2.0 theta=3.00
+
+--- 2nd executeTick() ---
+[ MoveBase: FINISHED ]
+
+--- 3rd executeTick() ---
+Robot says: mission completed!
+```
+
+```
+$ ros2 run bt_example tutorial_4
+
+--- 1st executeTick() ---
+[ Battery: OK ]
+Robot says: mission started...
+Converting string: "1;2;3"
+[ MoveBase: STARTED ]. goal: x=1 y=2.0 theta=3.00
+
+--- 2nd executeTick() ---
+[ Battery: OK ]
+Robot says: mission started...
+[ MoveBase: FINISHED ]
+
+--- 3rd executeTick() ---
+[ Battery: OK ]
+Robot says: mission started...
+Robot says: mission completed!
 ```
