@@ -14,7 +14,7 @@ int main()
 
     auto tree = factory.createTreeFromFile("/home/kimsooyoung/bt_ros2_ws/src/BT_example/bt_xml/tutorial_4_tree.xml");
 
-    NodeStatus status;
+    NodeStatus status = NodeStatus::SUCCESS;
 
     std::cout << "\n--- 1st executeTick() ---" << std::endl;
     status = tree.tickRoot();

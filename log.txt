@@ -81,3 +81,8 @@ Robot says: mission started...
 Robot says: mission started...
 Robot says: mission completed!
 ```
+
+```
+terminate called after throwing an instance of 'BT::RuntimeError'
+  what():  Error at line 7: -> Node not recognized: RetryUntilSuccessful
+```
