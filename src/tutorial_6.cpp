@@ -1,14 +1,10 @@
 // file that contains the custom nodes definitions
-#include "BT_example/tutorial_5.h"
+#include "BT_example/tutorial_6.h"
 
 #include "behaviortree_cpp_v3/loggers/bt_cout_logger.h"
 #include "behaviortree_cpp_v3/loggers/bt_minitrace_logger.h"
 #include "behaviortree_cpp_v3/loggers/bt_file_logger.h"
 #include "behaviortree_cpp_v3/bt_factory.h"
-
-#ifdef ZMQ_FOUND
-#include "behaviortree_cpp_v3/loggers/bt_zmq_publisher.h"
-#endif
 
 /** This is a more complex example that uses Fallback,
  * Decorators and Subtrees
@@ -21,47 +17,43 @@
 
 using namespace BT;
 
-int main(int argc, char** argv)
+int main()
 {
     BT::BehaviorTreeFactory factory;
 
-    // register all the actions into the factory
-    CrossDoor::RegisterNodes(factory);
+    factory.registerNodeType<SaySomething>("SaySomething");
+    factory.registerNodeType<MoveBaseAction>("MoveBase");
 
-    // Important: when the object tree goes out of scope, all the TreeNodes are destroyed
-    auto tree = factory.createTreeFromFile("/home/kimsooyoung/bt_ros2_ws/src/BT_example/bt_xml/tutorial_5_tree.xml");
+    auto tree = factory.createTreeFromFile("/home/kimsooyoung/bt_ros2_ws/src/BT_example/bt_xml/tutorial_6_tree.xml");
 
-    // This logger prints state changes on console
-    StdCoutLogger logger_cout(tree);
-
-    // This logger saves state changes on file
-    FileLogger logger_file(tree, "/home/kimsooyoung/bt_trace.fbl");
-
-    // This logger stores the execution time of each node
-    MinitraceLogger logger_minitrace(tree, "/home/kimsooyoung/bt_trace.json");
-
-#ifdef ZMQ_FOUND
-    // This logger publish status changes using ZeroMQ. Used by Groot
-    PublisherZMQ publisher_zmq(tree);
-#endif
-
-    printTreeRecursively(tree.rootNode());
-
-    const bool LOOP = ( argc == 2 && strcmp( argv[1], "loop") == 0);
-    // const bool LOOP = true;
-
-    do
+    NodeStatus status = NodeStatus::RUNNING;
+    // Keep on ticking until you get either a SUCCESS or FAILURE state
+    while( status == NodeStatus::RUNNING)
     {
-        NodeStatus status = NodeStatus::RUNNING;
-        // Keep on ticking until you get either a SUCCESS or FAILURE state
-        while( status == NodeStatus::RUNNING)
-        {
-            status = tree.tickRoot();
-            CrossDoor::SleepMS(1);   // optional sleep to avoid "busy loops"
-        }
-        CrossDoor::SleepMS(1000);
+        status = tree.tickRoot();
+        SleepMS(1);   // optional sleep to avoid "busy loops"
     }
-    while(LOOP);
+
+    // let's visualize some information about the current state of the blackboards.
+    std::cout << "--------------" << std::endl;
+    tree.blackboard_stack[0]->debugMessage();
+    std::cout << "--------------" << std::endl;
+    tree.blackboard_stack[1]->debugMessage();
+    std::cout << "--------------" << std::endl;
 
     return 0;
 }
+
+/* Expected output:
+
+    [ MoveBase: STARTED ]. goal: x=1 y=2.0 theta=3.00
+    [ MoveBase: FINISHED ]
+    Robot says: mission accomplished
+    --------------
+    move_result (std::string) -> full
+    move_goal (Pose2D) -> full
+    --------------
+    output (std::string) -> remapped to parent [move_result]
+    target (Pose2D) -> remapped to parent [move_goal]
+    --------------
+*/

@@ -94,6 +94,14 @@ ament_target_dependencies(tutorial_5
 	${dependencies}
 )
 
+add_executable(tutorial_6
+  src/tutorial_6.cpp
+  src/crossdoor_nodes.cpp
+)
+ament_target_dependencies(tutorial_6
+	${dependencies}
+)
+
 install (TARGETS
   tutorial_1
   tutorial_2
@@ -101,6 +109,7 @@ install (TARGETS
   tutorial_4
   tutorial_4_reactive_sequence
   tutorial_5
+  tutorial_6
   DESTINATION lib/${PROJECT_NAME}
 )
 

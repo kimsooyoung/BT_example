@@ -1,26 +1,20 @@
 <root main_tree_to_execute = "MainTree">
-    <BehaviorTree ID="DoorClosed">
-        <Sequence name="door_closed_sequence">
-            <Inverter>
-                <Condition ID="IsDoorOpen"/>
-            </Inverter>
-            <RetryUntilSuccesful num_attempts="4">
-                <OpenDoor/>
-            </RetryUntilSuccesful>
-            <PassThroughDoor/>
+    <BehaviorTree ID="MainTree">
+        <Sequence name="main_sequence">
+            <SetBlackboard output_key="move_goal" value="1;2;3" />
+            <SubTree ID="MoveRobot" target="move_goal" output="move_result" />
+            <SaySomething message="{move_result}"/>
         </Sequence>
     </BehaviorTree>
-    <BehaviorTree ID="MainTree">
-        <Sequence>
-            <Fallback name="root_Fallback">
-                <Sequence name="door_open_sequence">
-                    <IsDoorOpen/>
-                    <PassThroughDoor/>
-                </Sequence>
-                <SubTree ID="DoorClosed"/>
-                <PassThroughWindow/>
-            </Fallback>
-            <CloseDoor/>
-        </Sequence>
+    <BehaviorTree ID="MoveRobot">
+        <Fallback name="move_robot_main">
+            <SequenceStar>
+                <MoveBase       goal="{target}"/>
+                <SetBlackboard output_key="output" value="mission accomplished" />
+            </SequenceStar>
+            <ForceFailure>
+                <SetBlackboard output_key="output" value="mission failed" />
+            </ForceFailure>
+        </Fallback>
     </BehaviorTree>
 </root>

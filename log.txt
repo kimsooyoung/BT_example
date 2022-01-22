@@ -86,3 +86,18 @@ Robot says: mission completed!
 terminate called after throwing an instance of 'BT::RuntimeError'
   what():  Error at line 7: -> Node not recognized: RetryUntilSuccessful
 ```
+
+```
+$ ros2 run bt_example tutorial_6
+Converting string: "1;2;3"
+[ MoveBase: STARTED ]. goal: x=1 y=2.0 theta=3.00
+[ MoveBase: FINISHED ]
+Robot says: mission accomplished
+--------------
+move_result (std::string) -> full
+move_goal (Pose2D) -> full
+--------------
+output (std::string) -> remapped to parent [move_result]
+target (Pose2D) -> remapped to parent [move_goal]
+--------------
+```
