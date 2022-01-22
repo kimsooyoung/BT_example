@@ -1,9 +1,6 @@
 // file that contains the custom nodes definitions
 #include "BT_example/tutorial_6.h"
 
-#include "behaviortree_cpp_v3/loggers/bt_cout_logger.h"
-#include "behaviortree_cpp_v3/loggers/bt_minitrace_logger.h"
-#include "behaviortree_cpp_v3/loggers/bt_file_logger.h"
 #include "behaviortree_cpp_v3/bt_factory.h"
 
 /** This is a more complex example that uses Fallback,
