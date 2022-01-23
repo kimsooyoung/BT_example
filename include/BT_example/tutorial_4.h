@@ -64,6 +64,7 @@ class MoveBaseAction : public AsyncActionNode
     // This overloaded method is used to stop the execution of this node.
     void halt() override
     {
+        std::cout << "halt" << std::endl;
         _halt_requested.store(true);
     }
 
@@ -92,6 +93,7 @@ NodeStatus MoveBaseAction::tick()
     // this tick() if it is true.
     while (!_halt_requested && count++ < 25)
     {
+        std::cout << "Still RUNNING" << std::endl;
         SleepMS(10);
     }
 
