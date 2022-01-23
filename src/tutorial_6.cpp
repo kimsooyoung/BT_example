@@ -3,15 +3,20 @@
 
 #include "behaviortree_cpp_v3/bt_factory.h"
 
-/** This is a more complex example that uses Fallback,
- * Decorators and Subtrees
+/** In the CrossDoor example we did not exchange any information
+ * between the Maintree and the DoorClosed subtree.
  *
- * For the sake of simplicity, we aren't focusing on ports remapping to the time being.
+ * If we tried to do that, we would have noticed that it can't be done, because
+ * each of the tree/subtree has its own Blackboard, to avoid the problem of name
+ * clashing in very large trees.
  *
- * Furthermore, we introduce Loggers, which are a mechanism to
- * trace the state transitions in the tree for debugging purposes.
+ * But a SubTree can have its own input/output ports.
+ * In practice, these ports are nothing more than "soft links" between the
+ * ports inside the SubTree (called "internal") and those in the parent
+ * Tree (called "external").
+ *
  */
-
+ 
 using namespace BT;
 
 int main()

@@ -110,6 +110,30 @@ ament_target_dependencies(tutorial_7
 	${dependencies}
 )
 
+add_executable(coroutine_recap
+  src/coroutine_recap.cpp
+  src/crossdoor_nodes.cpp
+)
+ament_target_dependencies(coroutine_recap
+	${dependencies}
+)
+
+add_executable(tutorial_8
+  src/tutorial_8.cpp
+  src/crossdoor_nodes.cpp
+)
+ament_target_dependencies(tutorial_8
+	${dependencies}
+)
+
+add_executable(tutorial_9
+  src/tutorial_9.cpp
+  src/crossdoor_nodes.cpp
+)
+ament_target_dependencies(tutorial_9
+	${dependencies}
+)
+
 install (TARGETS
   tutorial_1
   tutorial_2
@@ -119,6 +143,9 @@ install (TARGETS
   tutorial_5
   tutorial_6
   tutorial_7
+  coroutine_recap
+  tutorial_8
+  tutorial_9
   DESTINATION lib/${PROJECT_NAME}
 )
 

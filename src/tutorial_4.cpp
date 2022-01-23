@@ -35,3 +35,15 @@ int main()
 
     return 0;
 }
+
+// --- 1st executeTick() ---
+// [ Battery: OK ]
+// Robot says: mission started...
+// Converting string: "1;2;3"
+// [ MoveBase: STARTED ]. goal: x=1 y=2.0 theta=3.00
+
+// --- 2nd executeTick() ---
+// [ MoveBase: FINISHED ]
+
+// --- 3rd executeTick() ---
+// Robot says: mission completed!

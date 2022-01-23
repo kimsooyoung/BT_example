@@ -3,14 +3,10 @@
 
 #include "behaviortree_cpp_v3/bt_factory.h"
 
-/** This is a more complex example that uses Fallback,
- * Decorators and Subtrees
- *
- * For the sake of simplicity, we aren't focusing on ports remapping to the time being.
- *
- * Furthermore, we introduce Loggers, which are a mechanism to
- * trace the state transitions in the tree for debugging purposes.
- */
+/** In this tutorial we will see how to wrap legacy code into a
+ * BehaviorTree in a non-intrusive way, i.e. without modifying the
+ * original class.
+*/
 
 using namespace BT;
 
