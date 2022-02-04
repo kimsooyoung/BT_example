@@ -56,6 +56,7 @@ Converting string: "1;2;3"
 [ MoveBase: STARTED ]. goal: x=1 y=2.0 theta=3.00
 
 --- 2nd executeTick() ---
+...
 [ MoveBase: FINISHED ]
 
 --- 3rd executeTick() ---
@@ -83,9 +84,32 @@ Robot says: mission completed!
 ```
 
 ```
+$ ros2 run bt_example tutorial_4_reactive_sequence
+--- 1st executeTick() ---
+[ Battery: OK ]
+Robot says: mission started...
+Converting string: "1;2;3"
+[ MoveBase: STARTED ]. goal: x=1 y=2.0 theta=3.00
+
+--- 2nd executeTick() ---
+[ Battery: OK ]
+...
+[ MoveBase: FINISHED ]
+
+--- 3rd executeTick() ---
+[ Battery: OK ]
+Robot says: mission completed!
+
+halt
+
+```
+
+```
 terminate called after throwing an instance of 'BT::RuntimeError'
   what():  Error at line 7: -> Node not recognized: RetryUntilSuccessful
 ```
+
+
 
 ```
 $ ros2 run bt_example tutorial_6
